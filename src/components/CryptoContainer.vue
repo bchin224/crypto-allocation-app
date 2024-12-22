@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import CryptoAllocation from "./CryptoAllocation.vue";
+
+defineProps<{ usd: number }>();
 </script>
 
 <template>
   <div class="card container">
     <h2>Crypto Allocations</h2>
-    <CryptoAllocation label="BTC Allocation (70%)" :percentage="70" />
-    <CryptoAllocation label="ETH Allocation (30%)" :percentage="30" />
+    <CryptoAllocation
+      label="BTC Allocation (70%)"
+      :percentage="70"
+      :usd="usd"
+    />
+    <CryptoAllocation
+      label="ETH Allocation (30%)"
+      :percentage="30"
+      :usd="usd"
+    />
   </div>
 </template>
 

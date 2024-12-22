@@ -2,6 +2,7 @@
 // import { ref } from "vue";
 
 defineProps<{ label: string }>();
+const usd = defineModel();
 
 // const assets = ref(0);
 </script>
@@ -10,7 +11,7 @@ defineProps<{ label: string }>();
   <div class="input-card">
     <h2>Asset Allocation Calculator</h2>
     <label>{{ label }}</label>
-    <input placeholder="Insert USD here" />
+    <input placeholder="Insert USD here" v-model="usd" />
   </div>
 </template>
 
