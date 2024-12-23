@@ -13,8 +13,8 @@ fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD")
     result.value = data;
     btcRate.value = Number(data.data.rates.BTC); // Access the Bitcoin rate
     ethRate.value = Number(data.data.rates.ETH); // Access the Ethereum rate
-    console.log("BTC Rate:", btcRate.value);
-    console.log("ETH Rate:", ethRate.value);
+    // console.log("BTC Rate:", btcRate.value);
+    // console.log("ETH Rate:", ethRate.value);
   })
   .catch((error) => console.error("Fetch error:", error));
 
