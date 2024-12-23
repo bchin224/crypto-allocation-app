@@ -9,17 +9,20 @@ const props = defineProps<{
 }>();
 
 const calculatedAllocation = computed(() => {
-  return props.usd * props.rate;
-});
+  // convert to percentage
+  const percent = props.percentage * 0.01;
 
-console.log("Props: rate", props.rate, "usd", props.usd);
+  console.log("Props: rate", props.rate, "usd", props.usd, "percent", percent);
+
+  // return percent * props.usd;
+  return percent * props.usd * props.rate;
+});
 </script>
 
 <template>
   <div class="crypto-card">
     <label>{{ label }}</label>
     <input :value="calculatedAllocation" placeholder="" disabled />
-    <!-- <input :value="usd" placeholder="" disabled /> -->
   </div>
 </template>
 
