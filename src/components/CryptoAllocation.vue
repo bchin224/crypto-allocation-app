@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// import { ref } from "vue";
-
-defineProps<{ label: string; percentage: number; usd: number }>();
+defineProps<{ label: string; percentage: number; usd: number; rate: number }>();
 </script>
 
 <template>

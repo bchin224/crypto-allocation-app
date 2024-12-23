@@ -3,13 +3,13 @@ import InvestableInput from "./components/InvestableInput.vue";
 import CryptoContainer from "./components/CryptoContainer.vue";
 import { ref } from "vue";
 
-const assets = ref(0);
+const usd = ref(0);
 </script>
 
 <template>
   <div class="card main-app">
-    <InvestableInput label="Investable Assets" v-model="assets" />
-    <CryptoContainer :usd="assets" />
+    <InvestableInput label="Investable Assets" v-model:usd="usd" />
+    <CryptoContainer :usd="usd" />
   </div>
 </template>
 
