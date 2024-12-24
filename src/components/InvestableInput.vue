@@ -22,8 +22,8 @@ const validateInput = (event: Event) => {
 </script>
 
 <template>
-  <div class="input-card">
-    <h2>Asset Allocation Calculator</h2>
+  <div class="input-card card">
+    <h2>Investable Assets</h2>
     <label for="usd-input">{{ label }}</label>
     <input
       id="usd-input"
@@ -40,5 +40,7 @@ const validateInput = (event: Event) => {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  border: 1px solid #969696;
+  background: #eee;
 }
 </style>
