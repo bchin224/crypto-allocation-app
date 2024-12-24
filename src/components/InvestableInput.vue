@@ -24,8 +24,13 @@ const validateInput = (event: Event) => {
 <template>
   <div class="input-card">
     <h2>Asset Allocation Calculator</h2>
-    <label>{{ label }}</label>
-    <input :value="usd" @input="validateInput" placeholder="Insert USD here" />
+    <label for="usd-input">{{ label }}</label>
+    <input
+      id="usd-input"
+      :value="usd"
+      @input="validateInput"
+      placeholder="Insert USD here"
+    />
   </div>
 </template>
 

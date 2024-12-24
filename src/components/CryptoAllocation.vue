@@ -8,21 +8,35 @@ const props = defineProps<{
   rate: number;
 }>();
 
+let cryptoAbrev = "";
+
+const getCryptoAbreviation = (label: string) => {
+  const abrevSplit = label.split(" ");
+  cryptoAbrev = abrevSplit[0];
+};
+
+getCryptoAbreviation(props.label);
+console.log(cryptoAbrev + "_input");
+
 const calculatedAllocation = computed(() => {
   // convert to percentage
   const percent = props.percentage * 0.01;
 
-  console.log("Props: rate", props.rate, "usd", props.usd, "percent", percent);
+  // console.log("Props: rate", props.rate, "usd", props.usd, "percent", percent);
 
-  // return percent * props.usd;
   return percent * props.usd * props.rate;
 });
 </script>
 
 <template>
   <div class="crypto-card">
-    <label>{{ label }}</label>
-    <input :value="calculatedAllocation" placeholder="" disabled />
+    <label :for="cryptoAbrev">{{ label }}</label>
+    <input
+      :id="cryptoAbrev"
+      :value="calculatedAllocation"
+      placeholder=""
+      disabled
+    />
   </div>
 </template>
 
