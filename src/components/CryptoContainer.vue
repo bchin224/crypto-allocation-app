@@ -1,20 +1,38 @@
 <script setup lang="ts">
 import CryptoAllocation from "./CryptoAllocation.vue";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
-// make api call every 5 seconds to provide real time updates
-const result = ref(null);
 const btcRate = ref(0);
 const ethRate = ref(0);
+let timestamp = "";
 
-fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD")
-  .then((response) => response.json())
-  .then((data) => {
-    result.value = data;
-    btcRate.value = Number(data.data.rates.BTC); // Access the Bitcoin rate
-    ethRate.value = Number(data.data.rates.ETH); // Access the Ethereum rate
-  })
-  .catch((error) => console.error("Fetch error:", error));
+const fetchRates = async () => {
+  try {
+    const response = await fetch(
+      "https://api.coinbase.com/v2/exchange-rates?currency=USD"
+    );
+    const data = await response.json();
+    btcRate.value = parseFloat(data.data.rates.BTC); // Convert to number
+    ethRate.value = parseFloat(data.data.rates.ETH); // Convert to number
+    // console.log("BTC Rate:", btcRate.value);
+    // console.log("ETH Rate:", ethRate.value);
+    timestamp = new Date().toISOString();
+    console.log("Refresh: ", new Date().toISOString());
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
+
+let intervalId: ReturnType<typeof setInterval>;
+
+onMounted(() => {
+  fetchRates(); // Fetch immediately on component mount
+  intervalId = setInterval(fetchRates, 15000); // Refresh every 15 seconds
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId); // clear interval when the component is unmounted
+});
 
 defineProps<{ usd: number }>();
 </script>
@@ -22,12 +40,14 @@ defineProps<{ usd: number }>();
 <template>
   <div class="card container">
     <h2>Crypto Allocations</h2>
+    <div>Rates last updated at {{ timestamp }}</div>
     <CryptoAllocation
       label="BTC Allocation (70%)"
       :percentage="70"
       :usd="usd"
       :rate="btcRate"
     />
+    <hr />
     <CryptoAllocation
       label="ETH Allocation (30%)"
       :percentage="30"

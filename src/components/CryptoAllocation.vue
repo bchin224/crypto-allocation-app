@@ -37,6 +37,9 @@ const calculatedAllocation = computed(() => {
       placeholder=""
       disabled
     />
+    <div class="exchange-rate-footer">
+      The current USD exchange rate for {{ cryptoAbrev }} is {{ rate }}
+    </div>
   </div>
 </template>
 
@@ -45,5 +48,8 @@ const calculatedAllocation = computed(() => {
   color: #000;
   display: flex;
   flex-direction: column;
+}
+.exchange-rate-footer {
+  font-size: 0.75em;
 }
 </style>
