@@ -46,7 +46,7 @@ const validateInput = (event: Event) => {
   flex-direction: column;
   margin-bottom: 15px;
   border: 1px solid #969696;
-  background: #b6e1be;
+  background: #eee;
   height: 100%;
 }
 .input-wrapper {
