@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 const btcRate = ref(0);
 const ethRate = ref(0);
-let timestamp = "";
+let readableTimestamp = "";
 
 const fetchRates = async () => {
   try {
@@ -16,8 +16,17 @@ const fetchRates = async () => {
     ethRate.value = parseFloat(data.data.rates.ETH); // Convert to number
     // console.log("BTC Rate:", btcRate.value);
     // console.log("ETH Rate:", ethRate.value);
-    timestamp = new Date().toISOString();
-    console.log("Refresh: ", new Date().toISOString());
+    const timestamp = new Date().toISOString();
+
+    readableTimestamp = new Date(timestamp).toLocaleString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
   } catch (error) {
     console.error("Fetch error:", error);
   }
@@ -40,14 +49,15 @@ defineProps<{ usd: number }>();
 <template>
   <div class="card container">
     <h2>Crypto Allocations</h2>
-    <div>Rates last updated at {{ timestamp }}</div>
+    <div class="last-refresh">
+      *Rates last updated at {{ readableTimestamp }}
+    </div>
     <CryptoAllocation
       label="BTC Allocation (70%)"
       :percentage="70"
       :usd="usd"
       :rate="btcRate"
     />
-    <hr />
     <CryptoAllocation
       label="ETH Allocation (30%)"
       :percentage="30"
@@ -58,12 +68,11 @@ defineProps<{ usd: number }>();
 </template>
 
 <style scoped>
-h2 {
-  margin: 0px;
-  color: #000;
-}
 .container {
   border: 1px solid #969696;
   background: #eee;
+}
+.last-refresh {
+  font-size: small;
 }
 </style>

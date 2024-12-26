@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InvestableInput from "./components/InvestableInput.vue";
 import CryptoContainer from "./components/CryptoContainer.vue";
+import Footer from "./components/Footer.vue";
 import { ref } from "vue";
 
 const usd = ref(0);
@@ -9,11 +10,15 @@ const usd = ref(0);
 <template>
   <div class="full-app">
     <h1>Crypto Asset Allocator</h1>
-    <div class="card main-app">
-      <InvestableInput label="Investable Assets" v-model:usd="usd" />
+    <body class="card main-app">
+      <InvestableInput
+        label="Type your investable assets in USD below. Do not include commas."
+        v-model:usd="usd"
+      />
       <CryptoContainer :usd="usd" />
-    </div>
+    </body>
   </div>
+  <Footer />
 </template>
 
 <style scoped>
@@ -32,7 +37,8 @@ h1 {
   justify-content: space-evenly;
 }
 .main-app > * {
-  max-width: calc(50% - 16px);
+  width: 100%;
+  /* max-width: calc(50% - 16px); */
 }
 @media (max-width: 560px) {
   .main-app > * {

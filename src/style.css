@@ -27,7 +27,6 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -61,10 +60,10 @@ button:focus-visible {
 }
 
 #app {
-  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: #fff;
 }
 
 @media (prefers-color-scheme: light) {
@@ -80,10 +79,33 @@ button:focus-visible {
   }
 }
 
+h2 {
+  margin: 0px;
+  color: #000;
+}
 input {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 5px;
   margin: 5px;
   color: #000000;
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.5em;
+}
+.icon-circle {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.icon-circle i {
+  font-size: 1rem;
 }

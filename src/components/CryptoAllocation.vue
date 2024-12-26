@@ -16,13 +16,10 @@ const getCryptoAbreviation = (label: string) => {
 };
 
 getCryptoAbreviation(props.label);
-console.log(cryptoAbrev + "_input");
 
 const calculatedAllocation = computed(() => {
   // convert to percentage
   const percent = props.percentage * 0.01;
-
-  // console.log("Props: rate", props.rate, "usd", props.usd, "percent", percent);
 
   return percent * props.usd * props.rate;
 });
@@ -30,15 +27,30 @@ const calculatedAllocation = computed(() => {
 
 <template>
   <div class="crypto-card">
-    <label :for="cryptoAbrev">{{ label }}</label>
-    <input
-      :id="cryptoAbrev"
-      :value="calculatedAllocation"
-      placeholder=""
-      disabled
-    />
+    <label :for="cryptoAbrev" class="card-label">{{ label }}</label>
+    <div class="input-wrapper">
+      <input
+        :id="cryptoAbrev"
+        :value="calculatedAllocation"
+        placeholder=""
+        disabled
+      />
+      <!-- Display crypto icon -->
+      <div
+        class="icon-circle"
+        :class="{
+          'bitcoin-bg': cryptoAbrev === 'BTC',
+          'ethereum-bg': cryptoAbrev === 'ETH',
+        }"
+      >
+        <i
+          class="fab"
+          :class="cryptoAbrev === 'BTC' ? 'fa-btc' : 'fa-ethereum'"
+        ></i>
+      </div>
+    </div>
     <div class="exchange-rate-footer">
-      The current USD exchange rate for {{ cryptoAbrev }} is {{ rate }}
+      ^The current USD exchange rate for {{ cryptoAbrev }} is {{ rate }}
     </div>
   </div>
 </template>
@@ -48,8 +60,38 @@ const calculatedAllocation = computed(() => {
   color: #000;
   display: flex;
   flex-direction: column;
+  background: #2765f8;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+.card-label {
+  font-weight: 600;
+  color: #fff;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.icon {
+  position: absolute;
+  right: 1rem;
+  font-size: 1rem;
+}
+.fab:before {
+  color: #fff;
+}
+
+.bitcoin-bg {
+  background-color: #f7931a;
+}
+
+.ethereum-bg {
+  background-color: #6375de;
 }
 .exchange-rate-footer {
+  color: #fff;
   font-size: 0.75em;
 }
 </style>

@@ -11,7 +11,7 @@ const validateInput = (event: Event) => {
   if (!isNaN(numericValue)) {
     emit("update:usd", numericValue); // Emit the valid value back to the parent
   } else {
-    emit("update:usd", 0); // Reset to 0 if invalid input
+    emit("update:usd", 0);
   }
 
   // Regex allowing numbers and decimal point
@@ -25,12 +25,17 @@ const validateInput = (event: Event) => {
   <div class="input-card card">
     <h2>Investable Assets</h2>
     <label for="usd-input">{{ label }}</label>
-    <input
-      id="usd-input"
-      :value="usd"
-      @input="validateInput"
-      placeholder="Insert USD here"
-    />
+    <div class="input-wrapper">
+      <input
+        id="usd-input"
+        :value="usd"
+        @input="validateInput"
+        placeholder="Insert USD here"
+      />
+      <div class="icon-circle">
+        <i class="fas fa-dollar-sign icon"></i>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,6 +46,23 @@ const validateInput = (event: Event) => {
   flex-direction: column;
   margin-bottom: 15px;
   border: 1px solid #969696;
-  background: #eee;
+  background: #b6e1be;
+  height: 100%;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.icon {
+  position: absolute;
+  font-size: 1rem;
+  color: #fff;
+}
+.icon-circle {
+  background-color: #008a26;
+}
+.icon-circle i {
+  font-size: 1rem;
 }
 </style>
