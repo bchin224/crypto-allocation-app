@@ -12,10 +12,9 @@ const fetchRates = async () => {
       "https://api.coinbase.com/v2/exchange-rates?currency=USD"
     );
     const data = await response.json();
-    btcRate.value = parseFloat(data.data.rates.BTC); // Convert to number
-    ethRate.value = parseFloat(data.data.rates.ETH); // Convert to number
-    // console.log("BTC Rate:", btcRate.value);
-    // console.log("ETH Rate:", ethRate.value);
+    // convert to numbers
+    btcRate.value = parseFloat(data.data.rates.BTC);
+    ethRate.value = parseFloat(data.data.rates.ETH);
     const timestamp = new Date().toISOString();
 
     readableTimestamp = new Date(timestamp).toLocaleString("en-US", {

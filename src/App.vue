@@ -38,7 +38,6 @@ h1 {
 }
 .main-app > * {
   width: 100%;
-  /* max-width: calc(50% - 16px); */
 }
 @media (max-width: 560px) {
   .main-app > * {

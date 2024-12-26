@@ -33,7 +33,7 @@ const validateInput = (event: Event) => {
         placeholder="Insert USD here"
       />
       <div class="icon-circle">
-        <i class="fas fa-dollar-sign icon"></i>
+        <i class="fas fa-dollar-sign icon" alt="USD"></i>
       </div>
     </div>
   </div>

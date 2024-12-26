@@ -46,6 +46,7 @@ const calculatedAllocation = computed(() => {
         <i
           class="fab"
           :class="cryptoAbrev === 'BTC' ? 'fa-btc' : 'fa-ethereum'"
+          :alt="cryptoAbrev === 'BTC' ? 'Bitcoin' : 'Ethereum'"
         ></i>
       </div>
     </div>
@@ -82,11 +83,9 @@ const calculatedAllocation = computed(() => {
 .fab:before {
   color: #fff;
 }
-
 .bitcoin-bg {
   background-color: #f7931a;
 }
-
 .ethereum-bg {
   background-color: #6375de;
 }
