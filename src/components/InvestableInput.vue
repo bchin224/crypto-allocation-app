@@ -13,11 +13,6 @@ const validateInput = (event: Event) => {
   } else {
     emit("update:usd", 0);
   }
-
-  // Regex allowing numbers and decimal point
-  (event.target as HTMLInputElement).value = input
-    .replace(/[^0-9.]/g, "")
-    .replace(/(\..*)\./g, "$1");
 };
 </script>
 
@@ -27,6 +22,7 @@ const validateInput = (event: Event) => {
     <label for="usd-input">{{ label }}</label>
     <div class="input-wrapper">
       <input
+        type="number"
         id="usd-input"
         :value="usd"
         @input="validateInput"
