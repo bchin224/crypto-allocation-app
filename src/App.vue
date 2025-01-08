@@ -10,13 +10,13 @@ const usd = ref(0);
 <template>
   <div class="full-app">
     <h1>Crypto Asset Allocator</h1>
-    <body class="card main-app">
+    <div class="card main-app">
       <InvestableInput
         label="Type your investable assets in USD below. Do not include commas."
         v-model:usd="usd"
       />
       <CryptoContainer :usd="usd" />
-    </body>
+    </div>
   </div>
   <Footer />
 </template>

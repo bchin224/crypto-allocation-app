@@ -5,6 +5,7 @@ const emit = defineEmits(["update:usd"]); // Define custom event to be emitted t
 
 // Validate input to only numbers
 const validateInput = (event: Event) => {
+  // console.log("Event: ", event);
   const input = (event.target as HTMLInputElement).value;
   const numericValue = parseFloat(input);
 
